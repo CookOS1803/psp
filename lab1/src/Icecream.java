@@ -1,16 +1,16 @@
 public class Icecream {
     private String _name;
     private boolean _hasChocolate;
-    private float _fatPercentage;
+    private int _fatPercentage;
 
     public Icecream()
     {
         _name = "";
         _hasChocolate = false;
-        _fatPercentage = 0f;
+        _fatPercentage = 0;
     }
 
-    public Icecream(String name, boolean hasChocolate, float fatPercentage)
+    public Icecream(String name, boolean hasChocolate, int fatPercentage)
     {
         _name = name;
         _hasChocolate = hasChocolate;
@@ -33,11 +33,11 @@ public class Icecream {
         _hasChocolate = hasChocolate;
     }
 
-    public float fatPercentage() {
+    public int fatPercentage() {
         return _fatPercentage;
     }
 
-    public void set_fatPercentage(float fatPercentage) {
+    public void set_fatPercentage(int fatPercentage) {
         _fatPercentage = fatPercentage;
     }
     
