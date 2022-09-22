@@ -16,6 +16,11 @@ public class Order {
         items.add(newItem);
     }
 
+    public void removeItem(int index)
+    {
+        items.remove(index);
+    }
+
     public float getTotalPrice()
     {
         float result = 0f;
@@ -25,6 +30,11 @@ public class Order {
         }
 
         return result;
+    }
+
+    public int getSize()
+    {
+        return items.size();
     }
 
     @Override

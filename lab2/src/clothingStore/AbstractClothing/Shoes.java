@@ -7,9 +7,13 @@ public class Shoes extends AbstractClothing {
     public void setSize(int size) {
         this.size = size;
     }
+    public int getSize()
+    {
+        return size;
+    }
 
     @Override
-    String getSize() {
+    String getStringSize() {
         return Integer.toString(size);
     }
 
@@ -17,6 +21,12 @@ public class Shoes extends AbstractClothing {
     {
         super();
         size = 0;
+    }
+
+    public Shoes(String name, String brand, float price, int size)
+    {
+        super(name, brand, price);
+        this.size = size;
     }
 
     @Override
@@ -32,7 +42,7 @@ public class Shoes extends AbstractClothing {
         if (super.equals(obj) && obj instanceof Shoes)
         {
             var temp = (Shoes)obj;
-            return getSize().equals(temp.getSize());
+            return getStringSize().equals(temp.getStringSize());
         }
         else
             return false;

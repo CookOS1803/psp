@@ -10,8 +10,13 @@ public class Shirt extends AbstractClothing {
     public void setSize(Size size) {
         this.size = size;
     }
+    public Size getSize()
+    {
+        return size;
+    }
+
     @Override
-    String getSize() {
+    String getStringSize() {
         return size.toString();
     }
 
@@ -19,6 +24,12 @@ public class Shirt extends AbstractClothing {
     {
         super();
         size = Size.S;
+    }
+
+    public Shirt(String name, String brand, float price, Size size)
+    {
+        super(name, brand, price);
+        this.size = size;
     }
 
     @Override

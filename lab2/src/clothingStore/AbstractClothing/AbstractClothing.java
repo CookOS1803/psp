@@ -44,7 +44,16 @@ public abstract class AbstractClothing implements IIdentifiable {
         calculateId();
     }
 
-    abstract String getSize();
+    public AbstractClothing(String name, String brand, float price)
+    {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+
+        calculateId();
+    }
+
+    abstract String getStringSize();
 
     @Override
     public void calculateId()
