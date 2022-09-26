@@ -15,6 +15,6 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        assertTrue( true );
+        assertTrue(Double.compare(Math.sin(0.), 0.) == 0 );
     }
 }

@@ -7,10 +7,10 @@ public class DrawnCartoon extends Cartoon {
     protected Auditory auditory;
 
     protected String artist;
-    public String get_artist() {
+    public String getArtist() {
         return artist;
     }
-    public void set_artist(String artist) {
+    public void setArtist(String artist) {
         this.artist = artist;
     }
 
@@ -20,37 +20,37 @@ public class DrawnCartoon extends Cartoon {
     }
 
     @Override
-    public String get_director() {
+    public String getDirector() {
         return director;
     }
 
     @Override
-    public int get_duration() {
+    public int getDuration() {
         return duration;
     }
 
     @Override
-    public Auditory get_auditory() {
+    public Auditory getAuditory() {
         return auditory;
     }
 
     @Override
-    public void set_director(String director) {
+    public void setDirector(String director) {
         this.director = director;
     }
 
     @Override
-    public void set_duration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
     @Override
-    public void set_auditory(Auditory auditory) {
+    public void setAuditory(Auditory auditory) {
         this.auditory = auditory;
     }
 
     @Override
-    public String get_name() {
+    public String getName() {
         return "Рисованный мультфильм";
     }
     
@@ -89,7 +89,7 @@ public class DrawnCartoon extends Cartoon {
         if (super.equals(obj) && obj instanceof DrawnCartoon)
         {
             DrawnCartoon temp = (DrawnCartoon)obj;
-            return artist.equals(temp.get_artist());
+            return artist.equals(temp.getArtist());
         }
         else
             return false;

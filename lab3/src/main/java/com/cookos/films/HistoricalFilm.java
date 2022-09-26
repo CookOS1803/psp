@@ -9,18 +9,18 @@ public class HistoricalFilm implements IFilm, IPrintable {
     protected Auditory auditory;
 
     protected String period;
-    public String get_period() {
+    public String getPeriod() {
         return period;
     }
-    public void set_period(String period) {
+    public void setPeriod(String period) {
         this.period = period;
     }
 
     protected int veracity;
-    public int get_veracity() {
+    public int getVeracity() {
         return veracity;
     }
-    public void set_veracity(int veracity) {
+    public void setVeracity(int veracity) {
         this.veracity = veracity;
     }
 
@@ -30,37 +30,37 @@ public class HistoricalFilm implements IFilm, IPrintable {
     }
 
     @Override
-    public String get_director() {
+    public String getDirector() {
         return director;
     }
 
     @Override
-    public int get_duration() {
+    public int getDuration() {
         return duration;
     }
 
     @Override
-    public Auditory get_auditory() {
+    public Auditory getAuditory() {
         return auditory;
     }
 
     @Override
-    public void set_director(String director) {
+    public void setDirector(String director) {
         this.director = director;
     }
 
     @Override
-    public void set_duration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
     @Override
-    public void set_auditory(Auditory auditory) {
+    public void setAuditory(Auditory auditory) {
         this.auditory = auditory;
     }
 
     @Override
-    public String get_name() {
+    public String getName() {
         return "Исторический фильм";
     }
     
@@ -109,11 +109,11 @@ public class HistoricalFilm implements IFilm, IPrintable {
         if (obj instanceof HistoricalFilm)
         {
             HistoricalFilm temp = (HistoricalFilm)obj;
-            return director.equals(temp.get_director())
-                && duration == temp.get_duration()
-                && auditory.equals(temp.get_auditory())
-                && period.equals(temp.get_period())
-                && veracity == temp.get_veracity();
+            return director.equals(temp.getDirector())
+                && duration == temp.getDuration()
+                && auditory.equals(temp.getAuditory())
+                && period.equals(temp.getPeriod())
+                && veracity == temp.getVeracity();
         }
         else
             return false;
@@ -121,7 +121,7 @@ public class HistoricalFilm implements IFilm, IPrintable {
 
     @Override
     public String toString() {
-        return "Тип: " + get_name() + "; Режиссёр: " + director + "; Продолжительность: "
+        return "Тип: " + getName() + "; Режиссёр: " + director + "; Продолжительность: "
             + duration + "мин; Аудитория: " + auditory + "; Период: " + period + "; Достоверность: " + veracity;
     }
 }

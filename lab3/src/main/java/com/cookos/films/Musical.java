@@ -9,18 +9,18 @@ public class Musical implements IFilm, IPrintable {
     protected Auditory auditory;
 
     protected String instrument;
-    public String get_instrument() {
+    public String getInstrument() {
         return instrument;
     }
-    public void set_instrument(String instrument) {
+    public void setInstrument(String instrument) {
         this.instrument = instrument;
     }
 
     protected int songsCount;
-    public int get_songsCount() {
+    public int getSongsCount() {
         return songsCount;
     }
-    public void set_songsCount(int songsCount) {
+    public void setSongsCount(int songsCount) {
         this.songsCount = songsCount;
     }
 
@@ -30,37 +30,37 @@ public class Musical implements IFilm, IPrintable {
     }
 
     @Override
-    public String get_director() {
+    public String getDirector() {
         return director;
     }
 
     @Override
-    public int get_duration() {
+    public int getDuration() {
         return duration;
     }
 
     @Override
-    public Auditory get_auditory() {
+    public Auditory getAuditory() {
         return auditory;
     }
 
     @Override
-    public void set_director(String director) {
+    public void setDirector(String director) {
         this.director = director;
     }
 
     @Override
-    public void set_duration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
     @Override
-    public void set_auditory(Auditory auditory) {
+    public void setAuditory(Auditory auditory) {
         this.auditory = auditory;
     }
 
     @Override
-    public String get_name() {
+    public String getName() {
         return "Мюзикл";
     }
     
@@ -109,11 +109,11 @@ public class Musical implements IFilm, IPrintable {
         if (obj instanceof Musical)
         {
             Musical temp = (Musical)obj;
-            return director.equals(temp.get_director())
-                && duration == temp.get_duration()
-                && auditory.equals(temp.get_auditory())
-                && instrument.equals(temp.get_instrument())
-                && songsCount == temp.get_songsCount();
+            return director.equals(temp.getDirector())
+                && duration == temp.getDuration()
+                && auditory.equals(temp.getAuditory())
+                && instrument.equals(temp.getInstrument())
+                && songsCount == temp.getSongsCount();
         }
         else
             return false;
@@ -121,7 +121,7 @@ public class Musical implements IFilm, IPrintable {
 
     @Override
     public String toString() {
-        return "Тип: " + get_name() + "; Режиссёр: " + director + "; Продолжительность: "
+        return "Тип: " + getName() + "; Режиссёр: " + director + "; Продолжительность: "
             + duration + "мин; Аудитория: " + auditory + "; Инструмент: " + instrument + "; Количество песен: " + songsCount;
     }
 }

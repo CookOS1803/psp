@@ -4,10 +4,10 @@ import com.cookos.IPrintable;
 
 public abstract class Cartoon implements IFilm, IPrintable {
     protected String graphicStyle;
-    public String get_graphicStyle() {
+    public String getGraphicStyle() {
         return graphicStyle;
     }
-    public void set_graphicStyle(String graphicStyle) {
+    public void setGraphicStyle(String graphicStyle) {
         this.graphicStyle = graphicStyle;
     }
 
@@ -16,9 +16,9 @@ public abstract class Cartoon implements IFilm, IPrintable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((graphicStyle == null) ? 0 : graphicStyle.hashCode());
-        result = prime * result + ((get_auditory() == null) ? 0 : get_auditory().hashCode());
-        result = prime * result + ((get_director() == null) ? 0 : get_director().hashCode());
-        result = prime * result + get_duration();
+        result = prime * result + ((getAuditory() == null) ? 0 : getAuditory().hashCode());
+        result = prime * result + ((getDirector() == null) ? 0 : getDirector().hashCode());
+        result = prime * result + getDuration();
         return result;
     }
 
@@ -31,10 +31,10 @@ public abstract class Cartoon implements IFilm, IPrintable {
         if (obj instanceof Cartoon)
         {
             Cartoon temp = (Cartoon)obj;
-            return get_director().equals(temp.get_director())
-                && get_duration() == temp.get_duration()
-                && get_auditory().equals(temp.get_auditory())
-                && graphicStyle.equals(temp.get_graphicStyle());
+            return getDirector().equals(temp.getDirector())
+                && getDuration() == temp.getDuration()
+                && getAuditory().equals(temp.getAuditory())
+                && graphicStyle.equals(temp.getGraphicStyle());
         }
         else
             return false;
@@ -42,7 +42,7 @@ public abstract class Cartoon implements IFilm, IPrintable {
 
     @Override
     public String toString() {
-        return "Тип: " + get_name() + "; Режиссёр: " + get_director() + "; Продолжительность: "
-            + get_duration() + "мин; Аудитория: " + get_auditory() + "; Графический стиль: " + graphicStyle;
+        return "Тип: " + getName() + "; Режиссёр: " + getDirector() + "; Продолжительность: "
+            + getDuration() + "мин; Аудитория: " + getAuditory() + "; Графический стиль: " + graphicStyle;
     }
 }

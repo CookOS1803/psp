@@ -1,13 +1,13 @@
 package com.cookos.films;
 
 public interface IFilm {
-    String get_director();
-    int get_duration();
-    Auditory get_auditory();
+    String getDirector();
+    int getDuration();
+    Auditory getAuditory();
 
-    void set_director(String director);
-    void set_duration(int duration);
-    void set_auditory(Auditory auditory);
+    void setDirector(String director);
+    void setDuration(int duration);
+    void setAuditory(Auditory auditory);
 
-    String get_name();
+    String getName();
 }

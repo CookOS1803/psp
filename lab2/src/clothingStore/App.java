@@ -5,7 +5,7 @@ import clothingStore.AbstractClothing.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        ArrayList<AbstractClothing> clothings = new ArrayList<AbstractClothing>();
+        var clothings = new ArrayList<AbstractClothing>();
         clothings.add(new Shoes("Кроссовки", "Nike", 300, 42));
         clothings.add(new Shirt("Поло", "Ralph Loren", 400, Shirt.Size.L));
         
