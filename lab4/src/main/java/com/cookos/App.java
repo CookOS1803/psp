@@ -1,6 +1,9 @@
 package com.cookos;
 
 import java.net.*;
+
+import javax.swing.JFormattedTextField;
+
 import java.io.*;
 
 public class App {
@@ -17,7 +20,9 @@ public class App {
             var ostream = new ObjectOutputStream(socket.getOutputStream());
             var istream = new ObjectInputStream(socket.getInputStream());
 
-            ostream.writeObject("lopl");
+            var matrix = (Matrix<JFormattedTextField>)istream.readObject();
+
+            matrix.forEach((e) -> System.out.println(e.getText()));
 
             istream.close();
             ostream.close();
