@@ -7,6 +7,9 @@ import javax.swing.JFormattedTextField;
 import java.io.*;
 
 public class App {
+    private static ObjectOutputStream ostream;
+    private static ObjectInputStream istream;
+
     public static void main(String[] arg) throws Exception {
 
         System.out.println("d");
@@ -17,15 +20,15 @@ public class App {
 
             System.out.println("DAA");
 
-            var ostream = new ObjectOutputStream(socket.getOutputStream());
-            var istream = new ObjectInputStream(socket.getInputStream());
+            ostream = new ObjectOutputStream(socket.getOutputStream());
+            istream = new ObjectInputStream(socket.getInputStream());
+            
+            while (true) {
+                var matrix = (Matrix<JFormattedTextField>)istream.readObject();
 
-            var matrix = (Matrix<JFormattedTextField>)istream.readObject();
-
-            matrix.forEach((e) -> System.out.println(e.getText()));
-
-            istream.close();
-            ostream.close();
+                matrix.forEach((e) -> System.out.print(e.getText()+ " "));
+                System.out.println();
+            }
 
         }
         catch (Exception e) {
@@ -33,6 +36,9 @@ public class App {
         }
         finally {
             serverSocket.close();
+
+            istream.close();
+            ostream.close();
         }
 
         System.out.println("Hello World!");

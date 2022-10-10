@@ -70,4 +70,15 @@ public class Matrix<T> implements Serializable
         matrix = newMatrix.matrix;
     }
 
+    public void addRow()
+    {
+        var row = new ArrayList<T>();
+
+        for (int i = 0; i < columns(); i++) {
+            row.add(null);
+        }
+
+        matrix.add(row);
+    }
+
 }
