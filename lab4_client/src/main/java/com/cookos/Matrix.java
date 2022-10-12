@@ -7,10 +7,12 @@ import java.util.function.Consumer;
 public class Matrix<T> implements Serializable 
 {
     private ArrayList<ArrayList<T>> matrix;
+    private IFactory<T> factory;
 
-    public Matrix(int x, int y)
+    public Matrix(int x, int y, IFactory<T> factory)
     {
         matrix = new ArrayList<ArrayList<T>>();
+        this.factory = factory;
 
         for (int i = 0; i < x; i++)
         {
@@ -18,10 +20,10 @@ public class Matrix<T> implements Serializable
 
             for (int j = 0; j < y; j++)
             {
-                arrayList.add(null);
+                arrayList.add(factory.getNew());
             }
 
-            matrix.add(arrayList);
+            matrix.add(arrayList);  
         }
     }
 
@@ -57,17 +59,17 @@ public class Matrix<T> implements Serializable
 
     public void setSize(int x, int y)
     {
-        var newMatrix = new Matrix<T>(x, y);
+        var tempMatrix = new Matrix<T>(x, y, new NullFactory<T>());
 
         for (int i = 0; i < rows() && i < x; i++)
         {
             for (int j = 0; j < columns() && j < y; j++)
             {
-                newMatrix.set(i, j, get(i, j));
+                tempMatrix.set(i, j, get(i, j));
             }
         }
 
-        matrix = newMatrix.matrix;
+        matrix = tempMatrix.matrix;
     }
 
     public void addRow()
@@ -75,7 +77,7 @@ public class Matrix<T> implements Serializable
         var row = new ArrayList<T>();
 
         for (int i = 0; i < columns(); i++) {
-            row.add(null);
+            row.add(factory.getNew());
         }
 
         matrix.add(row);
@@ -84,7 +86,7 @@ public class Matrix<T> implements Serializable
     public void addColumn()
     {
         for (var row : matrix) {
-            row.add(null);
+            row.add(factory.getNew());
         }
     }
 
