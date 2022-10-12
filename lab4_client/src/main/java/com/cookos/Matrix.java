@@ -81,4 +81,23 @@ public class Matrix<T> implements Serializable
         matrix.add(row);
     }
 
+    public void addColumn()
+    {
+        for (var row : matrix) {
+            row.add(null);
+        }
+    }
+
+    public void removeRow()
+    {
+        matrix.remove(rows() - 1);
+    }
+
+    public void removeColumn()
+    {
+        for (var row : matrix) {
+            row.remove(row.size() - 1);
+        }
+    }
+
 }
