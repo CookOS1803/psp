@@ -14,7 +14,8 @@ public class App {
 
     public static void main(String[] args) {
 
-        var matrix = new Matrix<JFormattedTextField>(3, 3, new MatrixCellFactory("0", 40, 40));
+        var factory = new MatrixCellFactory(0f, 40, 40);
+        var matrix = new Matrix<JFormattedTextField>(3, 3, factory);
 
         var mainFrame = new JFrame("Java SWING Examples");
         mainFrame.setSize(400,400);
@@ -24,7 +25,6 @@ public class App {
         
         var controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout());
-
         
         var buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
@@ -43,14 +43,13 @@ public class App {
         matrixGrid.setLayout(new GridLayout(matrix.rows(), matrix.columns(), 10, 10));
         matrix.forEach((e) -> matrixGrid.add(e));
         gridPanel.add(matrixGrid, BorderLayout.CENTER);
-        gridPanel.add(new JButton("-"), BorderLayout.WEST);
-        gridPanel.add(new JButton("+"), BorderLayout.EAST);
-        gridPanel.add(new JButton("-"), BorderLayout.NORTH);
-        gridPanel.add(new JButton(new AddRowAction("+", matrix, matrixGrid)), BorderLayout.SOUTH);
+        gridPanel.add(new JButton(new RemoveColumnAction("-", matrix, matrixGrid)), BorderLayout.WEST);
+        gridPanel.add(new JButton(new AddColumAction("+", matrix, matrixGrid, factory)), BorderLayout.EAST);
+        gridPanel.add(new JButton(new RemoveRowAction("-", matrix, matrixGrid)), BorderLayout.NORTH);
+        gridPanel.add(new JButton(new AddRowAction("+", matrix, matrixGrid, factory)), BorderLayout.SOUTH);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         
-        buttonPanel.add(new JButton(new InputAction("send", ostream, matrix)));
 
         Socket socket = null;
 
@@ -62,6 +61,9 @@ public class App {
             reader = new BufferedReader(new InputStreamReader(System.in));
             ostream = new ObjectOutputStream(socket.getOutputStream());
             istream = new ObjectInputStream(socket.getInputStream());
+
+            buttonPanel.add(new JButton(new InputAction("send", ostream, matrix)));
+            buttonPanel.updateUI();
             
         }
         catch (Exception e) {

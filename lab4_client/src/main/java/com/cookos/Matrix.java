@@ -7,12 +7,10 @@ import java.util.function.Consumer;
 public class Matrix<T> implements Serializable 
 {
     private ArrayList<ArrayList<T>> matrix;
-    private IFactory<T> factory;
 
     public Matrix(int x, int y, IFactory<T> factory)
     {
         matrix = new ArrayList<ArrayList<T>>();
-        this.factory = factory;
 
         for (int i = 0; i < x; i++)
         {
@@ -72,7 +70,7 @@ public class Matrix<T> implements Serializable
         matrix = tempMatrix.matrix;
     }
 
-    public void addRow()
+    public void addRow(IFactory<T> factory)
     {
         var row = new ArrayList<T>();
 
@@ -83,7 +81,7 @@ public class Matrix<T> implements Serializable
         matrix.add(row);
     }
 
-    public void addColumn()
+    public void addColumn(IFactory<T> factory)
     {
         for (var row : matrix) {
             row.add(factory.getNew());

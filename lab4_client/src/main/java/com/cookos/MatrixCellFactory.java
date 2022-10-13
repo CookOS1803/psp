@@ -6,13 +6,13 @@ import javax.swing.JFormattedTextField;
 
 public class MatrixCellFactory implements IFactory<JFormattedTextField> {
 
-    private String defaultText;
+    private float defaultValue;
     private int width;
     private int height;
 
-    public MatrixCellFactory(String defaultText, int width, int height)
+    public MatrixCellFactory(float defaultValue, int width, int height)
     {
-        this.defaultText = defaultText;
+        this.defaultValue = defaultValue;
         this.width = width;
         this.height = height;
     }
@@ -22,7 +22,7 @@ public class MatrixCellFactory implements IFactory<JFormattedTextField> {
         
         var result = new JFormattedTextField(NumberFormat.getNumberInstance());
         result.setHorizontalAlignment(JFormattedTextField.CENTER);
-        result.setText(defaultText);
+        result.setValue(defaultValue);
         result.setPreferredSize(new Dimension(width, height));
 
         return result;

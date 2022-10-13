@@ -4,32 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
 
-public class AddRowAction extends AbstractAction {
-
+public class RemoveRowAction extends AbstractAction {
+    
     private Matrix<JFormattedTextField> matrix;
     private JPanel panel;
-    private MatrixCellFactory factory;
 
-    public AddRowAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel, MatrixCellFactory factory)
+    public RemoveRowAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel)
     {
         super(label);
         this.matrix = matrix;
         this.panel = panel;
-        this.factory = factory;
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        matrix.addRow(factory);
+        
+        if (matrix.rows() == 1)
+            return;
 
+        for (int i = 0; i < matrix.columns(); i++) {
+            panel.remove(matrix.get(matrix.rows() - 1, i));
+        }
+
+        matrix.removeRow();
+        
         var layout = (GridLayout)panel.getLayout();
         layout.setRows(matrix.rows());
 
-        for (int i = 0; i < matrix.columns(); i++) {
-            panel.add(matrix.get(matrix.rows() - 1, i));
-        }
         panel.updateUI();
     }
-    
 }

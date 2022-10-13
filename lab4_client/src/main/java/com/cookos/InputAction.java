@@ -20,7 +20,19 @@ public class InputAction extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            ostream.writeObject(matrix);
+            
+            var floatMatrix = new Matrix<Number>(matrix.rows(), matrix.columns(), new TextToNumberMatrixFactory(matrix));
+
+            for (int i = 0; i < floatMatrix.rows(); i++) {
+                for (int j = 0; j < floatMatrix.columns(); j++) {
+                    System.out.print(floatMatrix.get(i, j) + " ");
+                }
+                System.out.println();
+                
+            }
+
+            ostream.writeObject(floatMatrix);
+
         } catch (IOException e1) {
             e1.printStackTrace();
         }

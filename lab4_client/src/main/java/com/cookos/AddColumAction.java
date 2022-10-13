@@ -4,13 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
 
-public class AddRowAction extends AbstractAction {
+public class AddColumAction extends AbstractAction {
 
     private Matrix<JFormattedTextField> matrix;
     private JPanel panel;
     private MatrixCellFactory factory;
 
-    public AddRowAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel, MatrixCellFactory factory)
+    public AddColumAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel, MatrixCellFactory factory)
     {
         super(label);
         this.matrix = matrix;
@@ -21,13 +21,13 @@ public class AddRowAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        matrix.addRow(factory);
+        matrix.addColumn(factory);
 
         var layout = (GridLayout)panel.getLayout();
-        layout.setRows(matrix.rows());
+        layout.setColumns(matrix.columns());
 
-        for (int i = 0; i < matrix.columns(); i++) {
-            panel.add(matrix.get(matrix.rows() - 1, i));
+        for (int i = 0; i < matrix.rows(); i++) {
+            panel.add(matrix.get(i, matrix.columns() - 1));
         }
         panel.updateUI();
     }

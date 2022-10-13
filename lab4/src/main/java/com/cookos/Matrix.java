@@ -8,7 +8,7 @@ public class Matrix<T> implements Serializable
 {
     private ArrayList<ArrayList<T>> matrix;
 
-    public Matrix(int x, int y)
+    public Matrix(int x, int y, IFactory<T> factory)
     {
         matrix = new ArrayList<ArrayList<T>>();
 
@@ -18,10 +18,10 @@ public class Matrix<T> implements Serializable
 
             for (int j = 0; j < y; j++)
             {
-                arrayList.add(null);
+                arrayList.add(factory.getNew());
             }
 
-            matrix.add(arrayList);
+            matrix.add(arrayList);  
         }
     }
 
@@ -57,17 +57,47 @@ public class Matrix<T> implements Serializable
 
     public void setSize(int x, int y)
     {
-        var newMatrix = new Matrix<T>(x, y);
+        var tempMatrix = new Matrix<T>(x, y, new NullFactory<T>());
 
         for (int i = 0; i < rows() && i < x; i++)
         {
             for (int j = 0; j < columns() && j < y; j++)
             {
-                newMatrix.set(i, j, get(i, j));
+                tempMatrix.set(i, j, get(i, j));
             }
         }
 
-        matrix = newMatrix.matrix;
+        matrix = tempMatrix.matrix;
+    }
+
+    public void addRow(IFactory<T> factory)
+    {
+        var row = new ArrayList<T>();
+
+        for (int i = 0; i < columns(); i++) {
+            row.add(factory.getNew());
+        }
+
+        matrix.add(row);
+    }
+
+    public void addColumn(IFactory<T> factory)
+    {
+        for (var row : matrix) {
+            row.add(factory.getNew());
+        }
+    }
+
+    public void removeRow()
+    {
+        matrix.remove(rows() - 1);
+    }
+
+    public void removeColumn()
+    {
+        for (var row : matrix) {
+            row.remove(row.size() - 1);
+        }
     }
 
 }

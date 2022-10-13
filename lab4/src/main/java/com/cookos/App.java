@@ -24,9 +24,16 @@ public class App {
             istream = new ObjectInputStream(socket.getInputStream());
             
             while (true) {
-                var matrix = (Matrix<JFormattedTextField>)istream.readObject();
+                var matrix = (Matrix<Number>)istream.readObject();
 
-                matrix.forEach((e) -> System.out.print(e.getText()+ " "));
+                for (int i = 0; i < matrix.rows(); i++) {
+                    for (int j = 0; j < matrix.columns(); j++) {
+                        System.out.print(matrix.get(i, j) + " ");
+                    }
+                    System.out.println();
+                    
+                }
+                
                 System.out.println();
             }
 
