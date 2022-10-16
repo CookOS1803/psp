@@ -1,4 +1,4 @@
-package com.cookos;
+package com.cookos.factories;
 
 import java.awt.Dimension;
 import java.text.NumberFormat;

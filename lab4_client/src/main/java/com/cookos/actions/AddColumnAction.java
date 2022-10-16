@@ -1,37 +1,37 @@
-package com.cookos;
+package com.cookos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
+import com.cookos.Matrix;
+import com.cookos.factories.*;
 
-public class RemoveColumnAction extends AbstractAction {
-    
+public class AddColumnAction extends AbstractAction {
+
     private Matrix<JFormattedTextField> matrix;
     private JPanel panel;
+    private MatrixCellFactory factory;
 
-    public RemoveColumnAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel)
+    public AddColumnAction(String label, Matrix<JFormattedTextField> matrix, JPanel panel, MatrixCellFactory factory)
     {
         super(label);
         this.matrix = matrix;
         this.panel = panel;
+        this.factory = factory;
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if (matrix.columns() == 1)
-            return;
+        matrix.addColumn(factory);
 
-        for (int i = 0; i < matrix.rows(); i++) {
-            panel.remove(matrix.get(i, matrix.columns() - 1));
-        }
-
-        matrix.removeColumn();
-        
         var layout = (GridLayout)panel.getLayout();
         layout.setColumns(matrix.columns());
 
+        panel.removeAll();
+        matrix.forEach(c -> panel.add(c));
+
         panel.updateUI();
     }
+    
 }

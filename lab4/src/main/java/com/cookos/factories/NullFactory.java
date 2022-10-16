@@ -1,4 +1,4 @@
-package com.cookos;
+package com.cookos.factories;
 
 public class NullFactory<T> implements IFactory<T> {
 

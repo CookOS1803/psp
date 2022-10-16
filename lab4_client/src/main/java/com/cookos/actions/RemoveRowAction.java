@@ -1,8 +1,10 @@
-package com.cookos;
+package com.cookos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
+
+import com.cookos.Matrix;
 
 public class RemoveRowAction extends AbstractAction {
     

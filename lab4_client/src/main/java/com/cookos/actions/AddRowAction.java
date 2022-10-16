@@ -1,8 +1,11 @@
-package com.cookos;
+package com.cookos.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
+
+import com.cookos.Matrix;
+import com.cookos.factories.*;
 
 public class AddRowAction extends AbstractAction {
 

@@ -1,14 +1,14 @@
 package com.cookos;
 
+import java.awt.*;
 import java.net.*;
 import java.io.*;
 import javax.swing.*;
-
-import java.awt.*;
+import com.cookos.actions.*;
+import com.cookos.factories.*;
 
 public class App {
 
-    private static BufferedReader reader;
     private static ObjectOutputStream ostream;
     private static ObjectInputStream istream;
 
@@ -44,7 +44,7 @@ public class App {
         matrix.forEach((e) -> matrixGrid.add(e));
         gridPanel.add(matrixGrid, BorderLayout.CENTER);
         gridPanel.add(new JButton(new RemoveColumnAction("-", matrix, matrixGrid)), BorderLayout.WEST);
-        gridPanel.add(new JButton(new AddColumAction("+", matrix, matrixGrid, factory)), BorderLayout.EAST);
+        gridPanel.add(new JButton(new AddColumnAction("+", matrix, matrixGrid, factory)), BorderLayout.EAST);
         gridPanel.add(new JButton(new RemoveRowAction("-", matrix, matrixGrid)), BorderLayout.NORTH);
         gridPanel.add(new JButton(new AddRowAction("+", matrix, matrixGrid, factory)), BorderLayout.SOUTH);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,22 +58,29 @@ public class App {
 
             socket = new Socket("127.0.0.1", 8080);
 
-            reader = new BufferedReader(new InputStreamReader(System.in));
             ostream = new ObjectOutputStream(socket.getOutputStream());
+            ostream.flush();
             istream = new ObjectInputStream(socket.getInputStream());
 
-            buttonPanel.add(new JButton(new InputAction("send", ostream, matrix)));
+            buttonPanel.add(new JButton(new SendAction("send", ostream, matrix)));
             buttonPanel.updateUI();
             
+            while (true)
+            {
+                float v = istream.readFloat();
+                headerLabel.setText(Float.toString(v));
+                headerLabel.updateUI();
+            }
         }
         catch (Exception e) {
             headerLabel.setText("can't connect");
+            e.printStackTrace();
 
             try {
-                reader.close();
                 istream.close();
                 ostream.close();
             } catch (Exception e2) {
+                e2.printStackTrace();
             }
         }
     }

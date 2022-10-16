@@ -3,6 +3,7 @@ package com.cookos;
 import java.io.*;
 import java.util.*;
 import java.util.function.Consumer;
+import com.cookos.factories.*;
 
 public class Matrix<T> implements Serializable 
 {

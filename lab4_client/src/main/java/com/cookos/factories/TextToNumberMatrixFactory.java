@@ -1,8 +1,10 @@
-package com.cookos;
+package com.cookos.factories;
 
 import javax.swing.JFormattedTextField;
 
-public class TextToNumberMatrixFactory implements IFactory<Number> {
+import com.cookos.Matrix;
+
+public class TextToNumberMatrixFactory implements IFactory<Float> {
 
     private Matrix<JFormattedTextField> matrix;
     private int r = 0;
@@ -13,9 +15,9 @@ public class TextToNumberMatrixFactory implements IFactory<Number> {
     }
 
     @Override
-    public Number getNew() {
+    public Float getNew() {
 
-        var result = (Number)matrix.get(r, c).getValue();
+        var result = ((Number)matrix.get(r, c).getValue()).floatValue();
 
         c++;
         if (c == matrix.columns())
