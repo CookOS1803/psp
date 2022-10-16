@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.cookos.AppTest" time="0.028" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.cookos.AppTest" time="0.021" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.class.path" value="D:\Projects\psp\lab4_client\target\test-classes;D:\Projects\psp\lab4_client\target\classes;C:\Users\DenisssBY-folder\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\DenisssBY-folder\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="d:\Projects\psp\lab4_client\target\test-classes;d:\Projects\psp\lab4_client\target\classes;C:\Users\DenisssBY-folder\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\DenisssBY-folder\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-19\bin"/>
-    <property name="sun.java.command" value="C:\Users\DENISS~1\AppData\Local\Temp\surefire1905614161534295020\surefirebooter6408330881829242796.jar C:\Users\DenisssBY-folder\AppData\Local\Temp\surefire1905614161534295020 2022-10-12T23-25-59_032-jvmRun1 surefire15033729018505052703tmp surefire_05860301710108744886tmp"/>
+    <property name="sun.java.command" value="C:\Users\DENISS~1\AppData\Local\Temp\surefire12763143572860049530\surefirebooter4965023959116470741.jar C:\Users\DenisssBY-folder\AppData\Local\Temp\surefire12763143572860049530 2022-10-17T02-37-29_853-jvmRun1 surefire16621101580183418390tmp surefire_014210559948362801379tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="D:\Projects\psp\lab4_client\target\test-classes;D:\Projects\psp\lab4_client\target\classes;C:\Users\DenisssBY-folder\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\DenisssBY-folder\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="d:\Projects\psp\lab4_client\target\test-classes;d:\Projects\psp\lab4_client\target\classes;C:\Users\DenisssBY-folder\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\DenisssBY-folder\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\DenisssBY-folder"/>
     <property name="user.language" value="ru"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2022-09-20"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-19"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="D:\Projects\psp\lab4_client"/>
+    <property name="basedir" value="d:\Projects\psp\lab4_client"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\DENISS~1\AppData\Local\Temp\surefire1905614161534295020\surefirebooter6408330881829242796.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\DENISS~1\AppData\Local\Temp\surefire12763143572860049530\surefirebooter4965023959116470741.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="19+36-2238"/>
@@ -45,7 +45,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\DENISS~1\AppData\Local\Temp\"/>
     <property name="java.version" value="19"/>
-    <property name="user.dir" value="D:\Projects\psp\lab4_client"/>
+    <property name="user.dir" value="d:\Projects\psp\lab4_client"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.cookos.AppTest" time="0.003"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.cookos.AppTest" time="0.002"/>
 </testsuite>

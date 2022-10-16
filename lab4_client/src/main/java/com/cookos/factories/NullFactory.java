@@ -6,5 +6,4 @@ public class NullFactory<T> implements IFactory<T> {
     public T getNew() {
         return null;
     }
-    
 }

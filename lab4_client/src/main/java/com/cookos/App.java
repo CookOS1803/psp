@@ -50,7 +50,6 @@ public class App {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         
-
         Socket socket = null;
 
         try {
