@@ -19,7 +19,7 @@ public class App {
         }
         catch (IOException e) {
             e.printStackTrace();
-    }
+        }
     }
 
     public static <T> void printMatrix(Matrix<T> matrix) {
