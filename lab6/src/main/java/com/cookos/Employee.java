@@ -33,20 +33,16 @@ public class Employee {
         this.experience = experience;
     }
     public Employee() {
-        this.id = 0;
+        this(0);
+    }
+    public Employee(int id)
+    {
+        this.id = id;
         this.firstName = "";
         this.lastName = "";
         this.position = "";
         this.salary = 0f;
         this.experience = 0;
-    }
-    public Employee(int id, String firstName, String lastName, String position, float salary, int experience) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.salary = salary;
-        this.experience = experience;
     }
     public int getId() {
         return id;
@@ -81,7 +77,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
-                + ", salary=" + salary + "]";
+                + ", salary=" + salary + ", experience=" + experience + "]";
     }
     
 }
