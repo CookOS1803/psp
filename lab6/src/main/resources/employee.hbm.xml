@@ -17,6 +17,7 @@
         <property name="lastName" type="string" column="last_name"/>
         <property name="position" type="string" column="position"/>
         <property name="salary" type="float" column="salary"/>
+        <property name="experience" type="int" column="experience"/>
 
     </class>  
 

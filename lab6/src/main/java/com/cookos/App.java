@@ -1,6 +1,5 @@
 package com.cookos;
 
-import org.hibernate.*;
 import org.hibernate.boot.*;
 import org.hibernate.boot.registry.*;
 
@@ -8,22 +7,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
-          
-        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
-       
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();  
-        Session session = factory.openSession();  
-        Transaction t = session.beginTransaction();   
+        var ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();            
+        var meta = new MetadataSources(ssr).getMetadataBuilder().build();         
+        var factory = meta.getSessionFactoryBuilder().build();  
+        var session = factory.openSession();  
+        var transaction = session.beginTransaction();   
                  
-        Employee e1=new Employee();    
+        var e1 = new Employee();
         e1.setId(101);    
         e1.setFirstName("Gaurav");    
         e1.setLastName("Chawla");    
             
         session.save(e1);  
-        t.commit();  
-        System.out.println("successfully saved");    
+        transaction.commit();
         factory.close();  
         session.close();   
     }
