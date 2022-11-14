@@ -1,6 +1,7 @@
 package com.cookos;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 
 @Entity
@@ -9,29 +10,23 @@ public class Employee {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private int id;
+    @Getter @Setter private int id;
 
     @Column (name = "first_name")
-    private String firstName;
+    @Getter @Setter private String firstName;
 
     @Column (name = "last_name")
-    private String lastName;
+    @Getter @Setter private String lastName;
 
     @Column (name = "position")
-    private String position;
+    @Getter @Setter private String position;
 
     @Column (name = "salary")
-    private float salary;
+    @Getter @Setter private float salary;
 
     @Column (name = "experience")    
-    private int experience;
+    @Getter @Setter private int experience;
 
-    public int getExperience() {
-        return experience;
-    }
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
     public Employee() {
         this(0);
     }
@@ -43,36 +38,6 @@ public class Employee {
         this.position = "";
         this.salary = 0f;
         this.experience = 0;
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getPosition() {
-        return position;
-    }
-    public void setPosition(String position) {
-        this.position = position;
-    }
-    public float getSalary() {
-        return salary;
-    }
-    public void setSalary(float salary) {
-        this.salary = salary;
     }
     @Override
     public String toString() {
