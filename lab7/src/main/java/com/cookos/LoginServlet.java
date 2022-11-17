@@ -11,17 +11,11 @@ import jakarta.servlet.http.*;
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var out = resp.getWriter();
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>First Servlet</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println(" First Servlet");
-        out.println("</body>");
-        out.println("</html>");
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        request.setAttribute("name", "I.O. Dima");
+        request.setAttribute("password", "1111");
+        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
     @Override
