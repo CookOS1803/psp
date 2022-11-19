@@ -1,0 +1,10 @@
+com\cookos\model\ListService.class
+com\cookos\servlet\WelcomeServlet.class
+com\cookos\model\Person.class
+com\cookos\servlet\LoginServlet.class
+com\cookos\servlet\RegisterServlet.class
+com\cookos\dao\UserDao.class
+com\cookos\servlet\GroupListServlet.class
+com\cookos\servlet\LogoutServlet.class
+com\cookos\util\ConnectorDB.class
+com\cookos\model\User.class
