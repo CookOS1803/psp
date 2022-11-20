@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.cookos.dao.UserDao;
 import com.cookos.model.User;
+import com.cookos.util.HashPassword;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -18,15 +20,20 @@ public class RegisterServlet extends HttpServlet {
         var name = request.getParameter("newLoginName");
         var password = request.getParameter("newPassword");
 
-        var daoUser = new UserDao();
-        var user = new User(name, password);
-        
-        if (daoUser.insertUser(user)) {
-            request.getRequestDispatcher(LoginServlet.LOGIN_JSP).forward(request, response);
-        } else {
-            request.setAttribute("errorRegister", "Выберите другое имя, такой пользователь существет");
-            request.getRequestDispatcher(REGISTER_JSP)
-                   .forward(request, response);
+        try (var daoUser = new UserDao()) {
+            var user = new User(name, HashPassword.getHash(password));
+            
+            if (daoUser.insertUser(user)) {
+                request.getRequestDispatcher(LoginServlet.LOGIN_JSP).forward(request, response);
+            } else {
+                request.setAttribute("errorRegister", "Выберите другое имя, такой пользователь существет");
+                request.getRequestDispatcher(REGISTER_JSP)
+                       .forward(request, response);
+            }
+        } catch (ServletException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

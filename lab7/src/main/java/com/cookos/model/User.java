@@ -7,9 +7,9 @@ public class User {
 
     private int id;
     private String login;
-    private String passw;
+    private byte[] passw;
 
-    public User(String name, String password) {
+    public User(String name, byte[] password) {
         this.login = name;
         this.passw = password;
     }    

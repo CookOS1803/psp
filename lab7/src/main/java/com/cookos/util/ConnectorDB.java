@@ -3,7 +3,11 @@ package com.cookos.util;
 import java.sql.*;
 import java.util.*;
 
+import org.apache.logging.log4j.*;
+
 public class ConnectorDB {
+
+    private static final Logger logger = LogManager.getLogger(ConnectorDB.class);
 
     static {
         try {
@@ -18,6 +22,8 @@ public class ConnectorDB {
         var url = resource.getString("db.url");
         var user = resource.getString("db.user");
         var pass = resource.getString("db.password");
+
+        logger.info("connection established");
 
         return DriverManager.getConnection(url, user, pass);
     }

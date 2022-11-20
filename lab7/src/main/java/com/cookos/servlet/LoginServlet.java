@@ -1,8 +1,11 @@
 package com.cookos.servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import com.cookos.dao.UserDao;
+import com.cookos.util.HashPassword;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -17,17 +20,36 @@ public class LoginServlet extends HttpServlet {
         var name = request.getParameter("name");
         var password = request.getParameter("password");
 
-        var userDao = new UserDao();
+        try (var userDao = new UserDao()) {
+            if (userDao.isValidUser(name, HashPassword.getHash(password))) {
 
-        if (userDao.isValidUser(name, password)) {
+                request.getSession().setAttribute("name", name);
 
-            request.getSession().setAttribute("name", name);
-            response.sendRedirect(request.getContextPath() + "/GroupListServlet");
+                var cookies = request.getCookies();
 
-        } else {
-            request.setAttribute("errorMessage", "Invalid Login and password!!");
-            request.getRequestDispatcher(LOGIN_JSP)
-                   .forward(request, response);
+                if (cookies != null) {
+                    for (var cookie : cookies) {
+                        System.out.println(cookie.getName() + cookie.getValue());
+
+                        if (name.equals(cookie.getName())) {
+                            request.getSession().setAttribute("lastdate", cookie.getValue());
+                        }
+                    }
+                }
+
+                var userCookie = new Cookie(name, LocalDateTime.now().toString());
+                userCookie.setMaxAge(60 * 60 * 24 * 365);
+                response.addCookie(userCookie);
+
+                response.sendRedirect(request.getContextPath() + "/GroupListServlet");
+
+            } else {
+                request.setAttribute("errorMessage", "Invalid Login and password!!");
+                request.getRequestDispatcher(LOGIN_JSP)
+                       .forward(request, response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
