@@ -2,25 +2,13 @@ package com.cookos;
 
 
 import java.util.*;
-import org.hibernate.*;
-import org.hibernate.boot.*;
-import org.hibernate.boot.registry.*;
-import org.hibernate.cfg.*;
 
 public class App 
 {
-    private static SessionFactory factory = null;
-
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
-        try (var ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        try (var dao = new EmployeeDao();
             var in = new Scanner(System.in)) {
-
-            var meta = new MetadataSources(ssr).getMetadataBuilder().build();         
-            factory = meta.getSessionFactoryBuilder().build();
-
-            var configuration = new Configuration();
-            configuration.addAnnotatedClass(Employee.class);
 
             boolean exit = false;
 
@@ -39,27 +27,21 @@ public class App
 
                 
                 switch (choice) {
-                    case 1 -> showAll();
-                    case 2 -> showEmployee(in);
-                    case 3 -> addEmployee(in);
-                    case 4 -> removeEmployee(in);
-                    case 5 -> updateEmployee(in);
-                    case 6 -> calculateSalary(in);
+                    case 1 -> showAll(dao);
+                    case 2 -> showEmployee(in, dao);
+                    case 3 -> addEmployee(in, dao);
+                    case 4 -> removeEmployee(in, dao);
+                    case 5 -> updateEmployee(in, dao);
+                    case 6 -> calculateSalary(in, dao);
                     
-                    case 0 -> {
-                        factory.close();
-                        exit = true;
-                    }
+                    case 0 -> exit = true;
                 }
             }            
-            
-        } catch (HibernateException e) {
-            e.printStackTrace();
         }
     }
 
-    private static void calculateSalary(Scanner in) {
-        var employee = findById(in);
+    private static void calculateSalary(Scanner in, EmployeeDao dao) {
+        var employee = findById(in, dao);
 
         if (employee == null) {
             System.out.println("Запись с таким ID не найдена");
@@ -89,8 +71,8 @@ public class App
         };
     }
 
-    private static void showEmployee(Scanner in) {
-        var employee = findById(in);
+    private static void showEmployee(Scanner in, EmployeeDao dao) {
+        var employee = findById(in, dao);
 
         if (employee != null)
             System.out.println(employee);
@@ -98,8 +80,8 @@ public class App
             System.out.println("Запись с таким ID не найдена");
     }
 
-    private static void updateEmployee(Scanner in) {
-        var employee = findById(in);
+    private static void updateEmployee(Scanner in, EmployeeDao dao) {
+        var employee = findById(in, dao);
 
         if (employee == null) {
             System.out.println("Запись с таким ID не найдена");
@@ -135,36 +117,21 @@ public class App
             }
         }
 
-        try (var session = factory.openSession()) {
-            var transaction = session.beginTransaction();
-
-            session.merge(employee);
-            
-            transaction.commit();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        dao.updateEmployee(employee);
     }
 
-    private static void removeEmployee(Scanner in) {
+    private static void removeEmployee(Scanner in, EmployeeDao dao) {
         
         int id = GetInt(in, "Введите ID: ");
 
-        try (var session = factory.openSession()) {
-            var transaction = session.beginTransaction();
-
-            var employee = new Employee(id);
-            session.remove(employee);
-            
-            transaction.commit();
-            
+        try {
+            dao.removeEmployee(id);
         } catch (Exception e) {
             System.out.println("Запись с таким ID не найдена");
-        }
+        }        
     }
 
-    private static void addEmployee(Scanner in) {
+    private static void addEmployee(Scanner in, EmployeeDao dao) {
         
         var employee = new Employee();
 
@@ -180,63 +147,24 @@ public class App
         employee.setSalary(GetFloat(in, "Введите зарплату: "));
         employee.setExperience(GetInt(in, "Введите стаж в годах: "));
 
-        try (var session = factory.openSession()) {
-            var transaction = session.beginTransaction();
-
-            session.persist(employee);
-            var id = (Integer)session.getIdentifier(employee);
-            
-            transaction.commit();
-
-            System.out.println("Добавлен новый сотрудник с ID " + id);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        int id = dao.addEmployee(employee);
+        System.out.println("Добавлен новый сотрудник с ID " + id);
 
     }
 
-    private static Employee findById(Scanner in) {
+    private static Employee findById(Scanner in, EmployeeDao dao) {
 
-        int id = GetInt(in, "Введите ID: ");
+        int id = GetInt(in, "Введите ID: ");        
 
-        try (var session = factory.openSession()) {
-            
-            var cb = session.getCriteriaBuilder();
-            var query = cb.createQuery(Employee.class);
-            var root = query.from(Employee.class);
-
-            query.select(root).where(cb.equal(root.get("id"), id));
-
-            try {
-                var employee = session.createQuery(query).getSingleResult();
-                return employee;
-            } catch (Exception e) {
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return dao.findById(id);
     }
 
-    private static void showAll() {
+    private static void showAll(EmployeeDao dao) {
         
-        try (var session = factory.openSession()) {
-            
-            var query = session.getCriteriaBuilder().createQuery(Employee.class);
-            var root = query.from(Employee.class);
+        var employees = dao.selectAll();
 
-            query.select(root);
-
-            var employees = session.createQuery(query).list();
-
-            for (var e : employees) {
-                System.out.println(e);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (var employee : employees) {
+            System.out.println(employee);
         }
     }
 
